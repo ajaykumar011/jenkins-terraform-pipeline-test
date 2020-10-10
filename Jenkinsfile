@@ -51,5 +51,26 @@ pipeline {
               //  }
             }
         }
+    
+        stage('Infra-Destroy') {
+            input {
+                message "Should we destroy the infrastructre ?"
+                ok "Yes, we should."
+                submitter "alice,bob"
+                parameters {
+                    string(name: 'PERSON', defaultValue: 'Ajay Kumar', description: 'Who should I say hello to?')
+                    choice(name: 'INFRA-DEL', choices: ['Yes', 'No', 'nochange'], description: 'Pick yes to display all')
+                }
+             }
+            steps {
+                echo "Hello, ${PERSON}, nice to meet you."
+                sh 'terraform destroy -auto-approve'
+                }
+            when { 
+                environment name: 'INFRA-DEL', value: 'Yes'
+            }
+
+        }
+
     }
 }
