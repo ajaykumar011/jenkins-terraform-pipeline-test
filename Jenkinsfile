@@ -31,22 +31,23 @@ pipeline {
         stage('Set Terraform path') {
             steps {
                 script {
-                    def tfHome = tool name: 'Terraform'
-                    env.PATH = “${tfHome}:${env.PATH}”
-                    }
-                sh 'terraform — version'
+                    // Get the Terraform tool.
+                    def tfHome = tool name: 'Terraform', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
+                    env.PATH = "${tfHome}:${env.PATH}"
+                    sh 'terraform --version'
+                }
              }
         }
  
     stage('Provision infrastructure') {
          steps {
-            dir('dev')
-                {
+            //dir('dev')
+            //    {
                 sh 'terraform init'
                 sh 'terraform plan -out=plan'
                 // sh 'terraform destroy -auto-approve'
                 sh 'terraform apply plan'
-                }
+              //  }
             }
         }
     }
