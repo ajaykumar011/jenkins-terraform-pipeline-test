@@ -4,7 +4,7 @@ pipeline {
         timeout(time: 1, unit: 'HOURS') 
         timestamps() 
         buildDiscarder(logRotator(numToKeepStr: '5'))
-        skipDefaultCheckout() //skips the default checkout.
+        //skipDefaultCheckout() //skips the default checkout.
         //checkoutToSubdirectory('subdirectory') //checkout to a subdirectory
         // preserveStashes()   Preserve stashes from completed builds, for use with stage restarting
         }
