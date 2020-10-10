@@ -4,10 +4,9 @@ pipeline {
  stages {
     stage('checkout') {
         steps {
-        git branch: 'master', url: 'git@github.com:ajaykumar011/jenkins-terraform-pipeline-test.git'
-       
+            git branch: 'master', url: 'git@github.com:ajaykumar011/jenkins-terraform-pipeline-test.git'
+            }
         }
-    }
     stage('Set Terraform path') {
         steps {
             script {
