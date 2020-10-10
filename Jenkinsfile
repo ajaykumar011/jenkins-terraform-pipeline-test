@@ -19,7 +19,8 @@ pipeline {
             steps {
                 script{
                     //git branch: 'Your Branch name', credentialsId: 'Your crendiatails', url: ' Your BitBucket Repo URL '
-                    git branch: 'master', credentialsId: 'github-cred', url: 'https://github.com/ajaykumar011/jenkins-terraform-pipeline-test/'
+                    // Branch name is main in this repo
+                    git branch: 'main', credentialsId: 'github-cred', url: 'https://github.com/ajaykumar011/jenkins-terraform-pipeline-test/'
                     echo 'Pulling... ' + env.GIT_BRANCH
                     sh 'printenv'
                    //sh "ls -la ${pwd()}"  
